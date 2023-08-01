@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>xu0w0xu</title>
-  <meta name="Description" content="Home Page of iissnan">
-  <meta name="color-scheme" content="dark light">
+  <meta name="Description" content="Home Page of xu0w0xu">
+  <meta name="color-scheme" content="light">
   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
   <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
 </head>
@@ -41,11 +41,7 @@
     </div>
     <!-- 备案信息 ICP for China -->
     <div class="beian">
-      <span>
-        <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-          蜀ICP备2022030886号
-        </a>
-      </span>
+        <a href="http://beian.miit.gov.cn/" class="animate-slide-in-up">蜀ICP备2022030886号</a>
     </div>
   </div>
 
@@ -65,7 +61,8 @@
           .then(animateTitle)
           .then(animateQuote)
           .then(animateLinks)
-          .then(animateLocation);
+          .then(animateLocation)
+          .then(animateBeian);
       }
 
       function animateTitle() {
@@ -103,6 +100,17 @@
           animate('.location-icon', SLIDE_IN_UP),
           animate('.location-text', SLIDE_IN_DOWN)
         );
+      }
+
+      function animateBeian() {
+        var DELAY_STEP = 200;
+        var elements = $('.beian a');
+        var concurrent = $.makeArray(elements)
+          .map(function (element, index) {
+            return animate(element, SLIDE_IN_DOWN, index * DELAY_STEP);
+          });
+
+        return $.when.apply($, concurrent);
       }
 
       function animate(selector, properties, delay, options) {
